@@ -1,0 +1,105 @@
+<app-header></app-header>
+<div class="form-content">
+  <form class="form top-space">
+    <div class="address-header">
+      <div class="address-header-content">Person Address form</div>
+      <span class="cancel-button" routerLink="/home"><mat-icon>cancel</mat-icon></span>
+    </div>
+  </form>
+</div>
+
+<div class="form-content">
+  <form class="form" [formGroup]="addressBookFormGroup" (ngSubmit)="onSubmit()">
+    <!--Input Name-->
+    <div class="row-content">
+      <label class="label text">Full Name</label>
+      <div class="example-full-width">
+        <input matInput  placeholder=" Your name" formControlName="firstname">
+      </div>
+      <mat-error *ngIf="!addressBookFormGroup.get('name').valid && addressBookFormGroup.get('name').touched">Name is required</mat-error>
+<!--      <mat-error *ngIf="checkError('name', 'pattern')">Name should start with upper case and should have minimum of 3 characters</mat-error>-->
+    </div>
+    <div class="row-content">
+      <label class="label text">Last Name</label>
+      <div class="example-full-width">
+        <input matInput  placeholder=" Your name" formControlName="lastname">
+      </div>
+      <mat-error *ngIf="!addressBookFormGroup.get('name').valid && addressBookFormGroup.get('lastname').touched">Name is required</mat-error>
+<!--      <mat-error *ngIf="checkError('name', 'pattern')">Name should start with upper case and should have minimum of 3 characters</mat-error>-->
+    </div>
+
+    
+
+    <!--Phone Number-->
+    <div class="row-content">
+      <mat-label class="label text">Phone Number</mat-label>
+      <div class="example-full-width">
+        <input matInput placeholder="Your phone Number" formControlName="phone_no">
+      </div>
+      <mat-error *ngIf="!addressBookFormGroup.get('phone_no').valid && addressBookFormGroup.get('phone').touched">Phone Number is requires</mat-error>
+<!--        <mat-error *ngIf="checkError('phoneNo', 'required')">Phone Number is required</mat-error>-->
+<!--        <mat-error *ngIf="checkError('phoneNo', 'pattern')">Phone number should be between 6-9 and length should be equal to 10</mat-error>-->
+    </div>
+
+
+    <!--Address-->
+    <div class="row-content address-label">
+      <mat-label class="label text">Address</mat-label>
+      <div class="example-full-width" >
+        <textarea matInput style="height:60px" formControlName="address"></textarea>
+      </div>
+<!--        <mat-error *ngIf="checkError('address', 'required')">Address is required</mat-error>-->
+    </div>
+
+   
+
+    <!--Selector-->
+    <div class="row-content-exp">
+      <!--Select State-->
+      <div class="oneRow-content">
+        <h4 class="label text">State</h4>
+        <mat-form-field class="select" appearance="outline">
+          <mat-label class="mat-label" >select state</mat-label>
+          <mat-select  formControlName="state">
+            <mat-option class="mat-label" *ngFor="let state of statesName" value="{{ state.name }}">{{state.name}}</mat-option>
+<!--            <mat-option value="assam">Assam</mat-option>-->
+<!--            <mat-option value="west">West B</mat-option>-->
+<!--            <mat-option value="rajasthan">Rajasthan</mat-option>-->
+<!--            <mat-option value="hariana">Hariana</mat-option>-->
+          </mat-select>
+        </mat-form-field>
+<!--        <mat-label class="label text">State</mat-label>-->
+
+
+      </div>
+
+      <!--City-->
+      <div class="oneRow-content">
+        <mat-label class="label text">City</mat-label>
+        <mat-form-field class="select" appearance="outline">
+          <mat-label class="mat-label">select city</mat-label>
+          <mat-select  formControlName="city">
+            <mat-option>Select City</mat-option>
+            <mat-option class="mat-label" *ngFor="let city of cities" value="{{ city.name }}">{{city.name}}</mat-option>
+          </mat-select>
+
+        </mat-form-field>
+      </div>
+
+      <!--Zip Code-->
+      <div class="oneRow-content">
+        <mat-label class="label text zipCode">Zip Code</mat-label><br>
+          <div class="example-half-width">
+            <input  matInput placeholder="zip code here" formControlName="zip">
+          </div>
+      </div>
+    </div>
+
+    <div class="buttonParent">
+      <div class="submit-reset">
+        <button mat-raised-button type="submit" class="button submitButton">Add</button>
+        <button mat-raised-button type="reset" class="resetButton button">Reset</button>
+      </div>
+    </div>
+  </form>
+</div>
