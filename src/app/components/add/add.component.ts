@@ -16,7 +16,7 @@ export class AddComponent implements OnInit {
   public addressBook: AddressBook = new AddressBook;
   public addressBookFormGroup: FormGroup ;
 
-  public statesName = [{id: 1, name: "Andhra Pradesh"},
+  public states = [{id: 1, name: "Andhra Pradesh"},
     {id: 2, name: "Arunachal Pradesh"},
     {id: 3, name: "Assam"},
     {id: 4, name: "Bihar"},
@@ -92,17 +92,16 @@ export class AddComponent implements OnInit {
     {id: 47, name: "Gwalior"},
     {id: 48, name: "Madurai"},];
 
-
-  
-  
   constructor( private formBuilder: FormBuilder, private addressBookService : AddressBookService, private router: Router) {
     this.addressBookFormGroup = this.formBuilder.group({
-      firstName: new FormControl('', [Validators.required, Validators.pattern("^[A-Z][a-zA-z\\s]{2,}$")]),
+    
+      firstName: new FormControl('', [Validators.required, Validators.pattern("^[A-Z][a-zA-z\\s]{2,}$")]),  
       lastName: new FormControl('', [Validators.required]),
       phone: new FormControl('', [Validators.required, Validators.pattern("^[6-9][0-9]{9}$")]),
       address: new FormControl('', [Validators.required, Validators.pattern("^[A-Z][a-zA-z\\s]{2,}$")]),
-      city: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required, Validators.pattern("^[A-Z][a-zA-z\\s]{2,}$")]),    
       state: new FormControl('', [Validators.required]),
+      city: new FormControl('', [Validators.required]),
       zip: new FormControl('', [Validators.required, Validators.pattern("^[0-9]{6}$")]),
     });
   }
@@ -113,7 +112,7 @@ export class AddComponent implements OnInit {
   onSubmit(): void {
 
       this.addressBook = this.addressBookFormGroup.value;
-      console.log(this.addressBook);   
+      console.log(this.addressBook)
       this.addressBookService.addAddressBookData(this.addressBook).subscribe((response: any)=>{
         console.log(response);
         setTimeout(() => {

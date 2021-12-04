@@ -14,29 +14,28 @@
     <div class="row-content">
       <label class="label text">Full Name</label>
       <div class="example-full-width">
-        <input matInput  placeholder=" Your name" formControlName="firstname">
+        <input matInput  placeholder=" Your name" formControlName="firstName">
       </div>
-      <mat-error *ngIf="!addressBookFormGroup.get('name').valid && addressBookFormGroup.get('name').touched">Name is required</mat-error>
-<!--      <mat-error *ngIf="checkError('name', 'pattern')">Name should start with upper case and should have minimum of 3 characters</mat-error>-->
-    </div>
-    <div class="row-content">
-      <label class="label text">Last Name</label>
-      <div class="example-full-width">
-        <input matInput  placeholder=" Your name" formControlName="lastname">
-      </div>
-      <mat-error *ngIf="!addressBookFormGroup.get('name').valid && addressBookFormGroup.get('lastname').touched">Name is required</mat-error>
+      <mat-error *ngIf="!addressBookFormGroup.get('firstName').valid && addressBookFormGroup.get('firstName').touched">Name is required</mat-error>
 <!--      <mat-error *ngIf="checkError('name', 'pattern')">Name should start with upper case and should have minimum of 3 characters</mat-error>-->
     </div>
 
-    
+    <!-- Email  -->
+    <div class="row-content">
+      <mat-label class="label text">Lastname</mat-label>
+      <div class="example-full-width" >
+        <input matInput placeholder=" Your lastName" formControlName="lastName">
+      </div>
+      <mat-error *ngIf="!addressBookFormGroup.get('lastName').valid && addressBookFormGroup.get('lastName').touched">lastname is required</mat-error>
+    </div>
 
     <!--Phone Number-->
     <div class="row-content">
       <mat-label class="label text">Phone Number</mat-label>
       <div class="example-full-width">
-        <input matInput placeholder="Your phone Number" formControlName="phone_no">
+        <input matInput placeholder="Your phone Number" formControlName="phone">
       </div>
-      <mat-error *ngIf="!addressBookFormGroup.get('phone_no').valid && addressBookFormGroup.get('phone').touched">Phone Number is requires</mat-error>
+      <mat-error *ngIf="!addressBookFormGroup.get('phone').valid && addressBookFormGroup.get('phone').touched">Phone Number is requires</mat-error>
 <!--        <mat-error *ngIf="checkError('phoneNo', 'required')">Phone Number is required</mat-error>-->
 <!--        <mat-error *ngIf="checkError('phoneNo', 'pattern')">Phone number should be between 6-9 and length should be equal to 10</mat-error>-->
     </div>
@@ -51,8 +50,6 @@
 <!--        <mat-error *ngIf="checkError('address', 'required')">Address is required</mat-error>-->
     </div>
 
-   
-
     <!--Selector-->
     <div class="row-content-exp">
       <!--Select State-->
@@ -61,7 +58,7 @@
         <mat-form-field class="select" appearance="outline">
           <mat-label class="mat-label" >select state</mat-label>
           <mat-select  formControlName="state">
-            <mat-option class="mat-label" *ngFor="let state of statesName" value="{{ state.name }}">{{state.name}}</mat-option>
+            <mat-option class="mat-label" *ngFor="let state of states" value="{{ state.name }}">{{state.name}}</mat-option>
 <!--            <mat-option value="assam">Assam</mat-option>-->
 <!--            <mat-option value="west">West B</mat-option>-->
 <!--            <mat-option value="rajasthan">Rajasthan</mat-option>-->
@@ -79,11 +76,15 @@
         <mat-form-field class="select" appearance="outline">
           <mat-label class="mat-label">select city</mat-label>
           <mat-select  formControlName="city">
+            <mat-error *ngIf="!addressBookFormGroup.get('name').valid && addressBookFormGroup.get('name').touched">Name is required</mat-error>
+       
             <mat-option>Select City</mat-option>
             <mat-option class="mat-label" *ngFor="let city of cities" value="{{ city.name }}">{{city.name}}</mat-option>
+        
           </mat-select>
 
         </mat-form-field>
+        
       </div>
 
       <!--Zip Code-->
@@ -102,4 +103,4 @@
       </div>
     </div>
   </form>
-</div>
+</div> 
