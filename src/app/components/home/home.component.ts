@@ -3,7 +3,8 @@ import { AddressBook } from "../../entities/address-book";
 import { AddressBookService } from "../../service/address-book.service";
 import { Router } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
-
+import { MatDialog } from '@angular/material/dialog';
+import { AddComponent } from '../add/add.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,7 +14,8 @@ export class HomeComponent implements OnInit {
 
   addressBookArray: AddressBook[] = [];
 
-  constructor(private addressBookService: AddressBookService, private router: Router, private httpClient: HttpClient) { }
+  
+  constructor(private dialog: MatDialog, private addressBookService: AddressBookService, private router: Router, private httpClient: HttpClient ) { }
 
   ngOnInit(): void {
     this.loadData()
@@ -35,7 +37,19 @@ export class HomeComponent implements OnInit {
     }, 500);
 
   }
+   
+  update(person:any) {
+    console.log(person);
+    const dialogRef = this.dialog.open(AddComponent, {     
+      data: person
+    });    
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      this.ngOnInit();
+    });
+    this.router.navigate(['']);
 
+    }
 
   goToAddData() {
     this.router.navigate(["add"])
