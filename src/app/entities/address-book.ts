@@ -1,7 +1,6 @@
 export class AddressBook {
 
-  public id : number;
-
+  public contactId : number; 
   public firstName : string;
   public lastName : string;
   public address : string;

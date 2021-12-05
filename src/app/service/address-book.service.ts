@@ -49,7 +49,7 @@ export class AddressBookService {
    * Method to delete addressBook data
    * @param id
    */
-  public deleteAddressBookData(id : number) : Observable<any> {
+  public deleteAddressBookData(id : any) : Observable<any> {
     console.log("id from service " + id)
     return this.httpClient.delete(`${this.mainUrl}/deleteContactId/${id}`)
   }
